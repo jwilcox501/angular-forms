@@ -1,0 +1,38 @@
+<p>dynamic-form works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <label>Name</label>
+  <input formControlName="name" placeHolder="Your name"/>
+  @if(this.form.controls["name"].invalid && (form.controls["name"].dirty || form.controls["name"].touched || submitted)) {
+    <div style="color:crimson">
+      @if(form.controls["name"].errors && form.controls["name"].errors['required']) {
+        <small>Name is required.</small>
+      }
+      @if(form.controls["name"].errors && form.controls["name"].errors['minlength']) {
+        <small>Min 3 characters.</small>
+      }
+    </div>
+  }
+
+  <label>
+    Email
+    <input formControlName="email" placeholder="you@example.com">
+  </label>
+   @if(form.controls["email"].invalid && (form.controls["email"].dirty || form.controls["email"].touched || submitted)) {
+     <div style="color:crimson">
+      @if(form.controls["email"].errors && form.controls["email"].errors['required']) {
+        <small>Email is required.</small>
+      }
+      @if(form.controls["email"].errors && form.controls["email"].errors['email']) {
+        <small>Email must be valid.</small>
+      }
+    </div>
+   }
+
+  <label>
+    <input type="checkbox" formControlName="newsletter">
+    Subscribe to newsletter
+  </label>
+
+  <button type="submit" [disabled]="form.invalid">Submit</button>
+
+</form>
