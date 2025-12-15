@@ -1,1 +1,15 @@
-<p>simple-form works!</p>
+<div>
+  <p>simple-form works!</p>
+  <div>
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+      <input name="name" [(ngModel)]="name" required minlength="3" #c="ngModel">
+      @if(c.invalid && (c.dirty || c.touched)) {
+        <div>Invalid</div>
+      }
+      <button [disabled]="f.invalid">Submit</button>
+    </form>
+
+  </div>
+  <div><b>{{displayName}}</b></div>
+
+</div>
